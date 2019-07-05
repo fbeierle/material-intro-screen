@@ -53,13 +53,13 @@ public class SwipeableViewPager extends CustomViewPager {
                 resolveSwipingRightAllowed();
                 return super.onTouchEvent(event);
             case (MotionEvent.ACTION_MOVE):
-                if (!swipingAllowed && startPos - event.getX() > 16) {
+                if (!swipingAllowed) {
                     return true;
                 }
                 return super.onTouchEvent(event);
             case (MotionEvent.ACTION_UP):
-                if (!swipingAllowed && startPos - event.getX() > 16) {
-                    smoothScrollTo(getWidth() * currentIt, 0);
+                if (!swipingAllowed) {
+//                    smoothScrollTo(getWidth() * currentIt, 0);
                     return true;
                 }
                 startPos = 0;
@@ -108,7 +108,7 @@ public class SwipeableViewPager extends CustomViewPager {
         if (getAdapter().shouldLockSlide(getCurrentItem())) {
             setSwipingRightAllowed(false);
         } else {
-            setSwipingRightAllowed(true);
+            setSwipingRightAllowed(false);
         }
     }
 }
